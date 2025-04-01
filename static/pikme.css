@@ -1,0 +1,42 @@
+body {
+    background-color: #2A0025; 
+    margin: 10% 5%;
+}
+
+h1 {
+    color: white;
+}
+
+button {
+    background-color: #DA33AA;
+    border-color: #FFF0FF;
+    color: white;
+    text-align: center;
+    font-size: large;
+    cursor: pointer;
+    padding: 0.5% 5%;
+    border-radius: 10px;
+}
+
+input {
+    background-color: #DA33AA;
+    border-color: #FFF0FF;
+    color: white;
+    text-align: center;
+    font-size: large;
+    padding: 0.5% 5%;
+    border-radius: 10px;
+}
+
+.green { color: green; }
+.red { color: red; }
+
+.input-large {
+    font-size: xx-large;
+    padding: 1% 7.5%;
+    border-radius: 15px;
+}
+
+.container-center-horizontal {
+    margin: 5% 30%;
+}

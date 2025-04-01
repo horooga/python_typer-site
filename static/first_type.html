@@ -6,16 +6,12 @@
 </head>
 <body>
     <div>,
-        <center>
-            <h1 class={{ "red" if res == "Oh no!" else "green" }}>{{ res }}</h1>
-            <h1>With time elapsed: {{ time_elapsed }}</h1>
-        </center><br><br>
         <center><h1>{{ question }}</h1></center>
         <center>
             <form action="/type" method="post">
                 <input type="hidden" name="question" value="{{ question }}">
                 <input type="hidden" name="start_time" value="{{ start_time }}">
-                <input class="input-large" placeholder="enter your answer" name="answer" autocomplete="off" autofocus onfocus="this.select()">
+                <input class = "input-large" placeholder="enter your answer" name="answer" autocomplete="off" autofocus onfocus="this.select()">
             </form>
         </center>
     </div>
