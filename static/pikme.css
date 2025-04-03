@@ -8,35 +8,23 @@ h1 {
 }
 
 button {
-    background-color: #DA33AA;
-    border-color: #FFF0FF;
-    color: white;
-    text-align: center;
-    font-size: large;
+    border: 0;
     cursor: pointer;
-    padding: 0.5% 5%;
-    border-radius: 10px;
-    background-image: url("static/button.png");
+    padding: 2% 6%;
+    background: url("static/button.png") no-repeat;
 }
 
 input {
-    background-color: #DA33AA;
-    border-color: #FFF0FF;
+    border: 0;
     color: white;
     text-align: center;
     font-size: large;
-    padding: 0.5% 5%;
-    border-radius: 10px;
+    padding: 2% 6%;
 }
 
 .green { color: green; }
 .red { color: red; }
-
-.input-large {
-    font-size: xx-large;
-    padding: 1% 7.5%;
-    border-radius: 15px;
-}
+.white { color: white; }
 
 .container-center-horizontal {
     margin: 5% 30%;

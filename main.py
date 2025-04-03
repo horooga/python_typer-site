@@ -28,13 +28,13 @@ async def type(request: Request, question: str = Form(default = None), answer: s
             "request": request,
             "question": questions[random.randrange(questions_amount)],
             "res": "Question skipped" if not answer else "Awesome!" if answer == answers[question] else "Oh no!",
-            "feedback": f"Answer was: {answers[question]}" if not answer else f"With time elapsed: {str(round(time.time() - float(start_time), 3))}",
+            "feedback": f"With time elapsed: {str(round(time.time() - float(start_time), 3))}" if answer == answers[question] else f"Answer was: {answers[question]}",
             "start_time": str(round(time.time()))
         })
     else:
         return templates.TemplateResponse("first_type.html", {
             "request": request,
-            "question": questions[random.randrange()],
+            "question": questions[random.randrange(questions_amount)],
             "start_time": str(round(time.time()))
         })
     
