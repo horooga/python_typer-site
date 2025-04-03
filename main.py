@@ -4,10 +4,15 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import yaml
 import time
+import random
 
 with open("questions.yaml", "r") as f:
-    answers = yaml.safe_load(f)
-    questions = [i for i in answers]
+    try:
+        answers = yaml.safe_load(f)
+        questions = [i for i in answers]
+        questions_amount = len(questions)
+    except Exception as e:
+        print(e)
 app = FastAPI()
 templates = Jinja2Templates(directory="static")
 app.mount("/static", StaticFiles(directory="static"))
@@ -21,15 +26,15 @@ async def type(request: Request, question: str = Form(default = None), answer: s
     if start_time:
         return templates.TemplateResponse("type.html", {
             "request": request,
-            "question": questions[1],
-            "res": "Awesome!" if answer == answers[question] else "Oh no!",
-            "time_elapsed": str(round(time.time() - float(start_time), 3)),
+            "question": questions[random.randrange(questions_amount)],
+            "res": "Question skipped" if not answer else "Awesome!" if answer == answers[question] else "Oh no!",
+            "feedback": f"Answer was: {answers[question]}" if not answer else f"With time elapsed: {str(round(time.time() - float(start_time), 3))}",
             "start_time": str(round(time.time()))
         })
     else:
         return templates.TemplateResponse("first_type.html", {
             "request": request,
-            "question": questions[1],
+            "question": questions[random.randrange()],
             "start_time": str(round(time.time()))
         })
     
