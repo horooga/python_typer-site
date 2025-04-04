@@ -27,8 +27,8 @@ async def type(request: Request, question: str = Form(default = None), answer: s
         return templates.TemplateResponse("type.html", {
             "request": request,
             "question": questions[random.randrange(questions_amount)],
-            "res": "Question skipped" if not answer else "Awesome!" if answer == answers[question] else "Oh no!",
-            "feedback": f"With time elapsed: {str(round(time.time() - float(start_time), 3))}" if answer == answers[question] else f"Answer was: {answers[question]}",
+            "res": "skip" if not answer else "true" if answer == answers[question] else "false",
+            "feedback": f"Time elapsed: {str(round(time.time() - float(start_time), 3))} seconds" if answer == answers[question] else f"Answer was: {answers[question]}",
             "start_time": str(round(time.time()))
         })
     else:

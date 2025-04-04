@@ -1,4 +1,10 @@
+@font-face {
+    font-family: "Px";
+    src: url("medodica.otf");
+}
+
 body {
+    font-family: "Px";
     background-color: #2A0025; 
     margin: 10% 5%;
 }
@@ -11,21 +17,22 @@ button {
     border: 0;
     cursor: pointer;
     padding: 2% 6%;
-    background: url("static/button.png") no-repeat;
+    font-size: xxx-large;
+    background: transparent url("start.png") center no-repeat;
+    background-size: contain;
 }
 
 input {
     border: 0;
     color: white;
     text-align: center;
-    font-size: large;
-    padding: 2% 6%;
+    font-family: "Px";
+    font-size: xxx-large;
+    padding: 2% 10%;
+    background: transparent url("input.png") center no-repeat;
+    background-size: contain;
 }
 
-.green { color: green; }
-.red { color: red; }
-.white { color: white; }
-
-.container-center-horizontal {
-    margin: 5% 30%;
+*:focus {
+    outline: none;
 }
