@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, Request, Form
+from fastapi import FastAPI, APIRouter, Request, Form, Body
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -37,4 +37,7 @@ async def type(request: Request, question: str = Form(default = None), answer: s
             "question": questions[random.randrange(questions_amount)],
             "start_time": str(round(time.time()))
         })
-    
+
+@app.post("/register")
+async def register(user: UserSchema = Body(...)):
+
