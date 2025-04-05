@@ -1,13 +1,19 @@
+from passlib.context import CryptContext
 from decouple import config
+import jwt
+import time
 
-def sign_jwt(user_id: str) -> Dict[str, str]:
-    payload = {
-        "user_id": user_id,
-        "expires": time.time() + 600
-    }
-    token = jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
+JWT_SECRET = config("secret")
+JWT_ALGORITHM = config("alghorithm")
+PASSWORD_CONTEXT = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-    return token_response(token)
+def sign_jwt(nickname: str) -> dict:
+    token = jwt.encode({
+        "username": nickname,
+        "expires": time.time(),
+    }, JWT_SECRET, algorithm=JWT_ALGORITHM)
+
+    return { "access_token": token }
 
 def decode_jwt(token: str) -> dict:
     try:

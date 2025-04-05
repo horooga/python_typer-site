@@ -1,10 +1,17 @@
 from fastapi import FastAPI, APIRouter, Request, Form, Body
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse, FileResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from auth import *
 import yaml
 import time
 import random
+
+with open("users.yaml", "r") as f:
+    try:
+        users = yaml.safe_load(f)
+    except Exception as e:
+        print(e)
 
 with open("questions.yaml", "r") as f:
     try:
@@ -38,6 +45,15 @@ async def type(request: Request, question: str = Form(default = None), answer: s
             "start_time": str(round(time.time()))
         })
 
-@app.post("/register")
-async def register(user: UserSchema = Body(...)):
+@app.post("/login")
+async def login(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@app.post("/auth")
+async def auth(request: Request, username: str = Form(), password: str = Form()):
+    if username in users:
+        if PASSWORD_CONTEXT.verify(password, users[username]):
+            return sign_jwt(username)
+        elif True:
+            return RedirectResponse("/type", status_code = 302)
 
